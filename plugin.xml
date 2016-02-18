@@ -52,8 +52,7 @@
         <source-file src="android/src/OpenIabCordovaPlugin.java" target-dir="src/org/onepf/openiab/cordova" />
         <source-file src="android/src/Serialization.java" target-dir="src/org/onepf/openiab/cordova" />
 
-        <!-- Libraries -->
-        <source-file src="android/libs/okhttp-3.1.2.jar" target-dir="libs" />        
+        <!-- Libraries -->   
         <source-file src="android/libs/OpenIAB.jar" target-dir="libs" />
         <source-file src="android/libs/in-app-purchasing-2.0.1.jar" target-dir="libs" />
         <source-file src="android/libs/FortumoInApp-android-9.1.2-o.jar" target-dir="libs" />   
