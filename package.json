@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/onepf/OpenIAB-Cordova-Plugin.git"
+    "url": "git+https://github.com/jamesjara/OpenIAB-Cordova-Plugin"
   },
   "keywords": [
     "OpenIAB-Cordova-Plugin",
