@@ -1,0 +1,40 @@
+{
+  "name": "openiab-cordova-plugin-fortumo",
+  "version": "1.0.4",
+  "description": "OpenIAB-Cordova-Plugin forked to be used from phonegap build npm",
+  "cordova": {
+    "platforms": [
+      "ios",
+      "android",
+      "wp8"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onepf/OpenIAB-Cordova-Plugin.git"
+  },
+  "keywords": [
+    "OpenIAB-Cordova-Plugin",
+    "cordova",
+    "phonegap",
+    "phoengap",
+    "build",
+    "ecosystem:cordova",
+    "cordova-ios",
+    "cordova-android",
+    "cordova-windows"
+  ],
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.0.0"
+    }
+  ],
+  "author": "jamesjara <jamesjara@gmail.com> (https://www.jamesjara.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/onepf/OpenIAB-Cordova-Plugin/issues"
+  },
+  "homepage": "https://github.com/onepf/OpenIAB-Cordova-Plugin"
+}
+
