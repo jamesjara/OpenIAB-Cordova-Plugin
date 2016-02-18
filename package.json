@@ -1,6 +1,6 @@
 {
   "name": "openiab-cordova-plugin-fortumo",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "OpenIAB-Cordova-Plugin forked to be used from phonegap build npm",
   "cordova": {
     "platforms": [
@@ -37,4 +37,3 @@
   },
   "homepage": "https://github.com/onepf/OpenIAB-Cordova-Plugin"
 }
-
