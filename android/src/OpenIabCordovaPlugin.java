@@ -17,7 +17,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.util.Log;
 
-import com.squareup.okhttp.internal.StrictLineReader;
+import com.squareup.okhttp3.internal.StrictLineReader;
 
 import org.onepf.oms.SkuManager;
 import org.onepf.oms.appstore.googleUtils.*;
