@@ -32,10 +32,7 @@ import mp.PaymentResponse;
 public class OpenIabCordovaPlugin extends CordovaPlugin
 {
 	
-	private class mClass extends PaymentActivity {
-	        //Classes A , B , C , D accessible here 
-	}
-	 
+ 
     public static final String TAG = "OpenIAB-xxxx";
     
     //private PaymentActivity  mClass;
@@ -269,7 +266,7 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
             @Override
             public void run() {
             	//mClass.PaymentRequest.PaymentRequestBuilder builder = new mClass.PaymentRequest.PaymentRequestBuilder();
-            	mClass.PaymentRequest.PaymentRequestBuilder builder = new mClass.PaymentRequest.PaymentRequestBuilder();
+            	PaymentRequest.PaymentRequestBuilder builder = new PaymentRequest.PaymentRequestBuilder();
                 builder.setService(PaymentConstants.GOLD_SERVICE_ID, PaymentConstants.GOLD_SERVICE_IN_APP_SECRET);
                 builder.setProductName(PaymentConstants.PRODUCT_GOLD);
                 builder.setConsumable(true);
@@ -411,20 +408,6 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
         }
     }
 */
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.d(TAG, "onActivityResult(" + requestCode + ", " + resultCode + ", " + data);
-
-        // Pass on the activity result to the helper for handling
-       // if (!_helper.handleActivityResult(requestCode, resultCode, data)) {
-            // not handled, so handle it ourselves (here's where you'd
-            // perform any handling of activity results not related to in-app
-            // billing...
-            super.onActivityResult(requestCode, resultCode, data);
-       // } else {
-       //     Log.d(TAG, "onActivityResult handled by IABUtil.");
-       // }
-    }
 
     private void createBroadcasts() {
         Log.d(TAG, "createBroadcasts");
@@ -484,4 +467,39 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
                         
         }
     };
+    
+
+	protected final void makePayment(PaymentRequest payment) {
+		startActivityForResult(payment.toIntent(this), REQUEST_CODE);
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode == REQUEST_CODE) {
+			if(data == null) {
+				return;
+			}			
+			// OK
+			if (resultCode == RESULT_OK) {
+				PaymentResponse response = new PaymentResponse(data);
+				
+				switch (response.getBillingStatus()) {
+					case MpUtils.MESSAGE_STATUS_BILLED:
+					// ...
+					break;
+				case MpUtils.MESSAGE_STATUS_FAILED:
+					// ...
+					break;
+				case MpUtils.MESSAGE_STATUS_PENDING:
+					// ...
+					break;	
+				}
+			// Cancel
+			} else {
+				// ..
+			}
+		} else {
+			super.onActivityResult(requestCode, resultCode, data);
+		}
+	}
 }
