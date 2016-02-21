@@ -241,7 +241,7 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
     }
 
     private boolean checkInitialized(final CallbackContext callbackContext) {
-        if (_helper == null || _inventory == null)
+        if (false)
         {
             Log.e(TAG, "Not initialized");
             callbackContext.error("Not initialized");
