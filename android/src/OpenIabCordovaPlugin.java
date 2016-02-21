@@ -35,7 +35,7 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
     public static final String TAG = "OpenIAB-xxxx";
     
     private PaymentActivity  mClass;
-
+    public static final String READ = Manifest.permission.PAYMENT_BROADCAST_PERMISSION;
     /*
     @Override
     protected void onStart() {
@@ -52,21 +52,7 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
         super.onPause();
     }
     */
-   
-    public static String getMetadata(Context context, String name) {
-    	try {
-    	ApplicationInfo appInfo = context.getPackageManager().getApplicationInfo(
-    	context.getPackageName(), PackageManager.GET_META_DATA);
-    	if (appInfo.metaData != null) {
-    	return appInfo.metaData.getString(name);
-    	}
-    	} catch (PackageManager.NameNotFoundException e) {
-    	// if we can’t find it in the manifest, just return null
-    	}
 
-    	return null;
-    	}
-    
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException
     {
@@ -226,7 +212,7 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
         cordova.getActivity().runOnUiThread(new Runnable() {
             public void run() {
             	
-            	MpUtils.enablePaymentBroadcast(this, getMetadata('PAYMENT_BROADCAST_PERMISSION')); //Manifest.permission.PAYMENT_BROADCAST_PERMISSION);
+            	MpUtils.enablePaymentBroadcast(this, READ)); //Manifest.permission.PAYMENT_BROADCAST_PERMISSION);
             	
             	
                 // _helper = new OpenIabHelper(cordova.getActivity(), options);
