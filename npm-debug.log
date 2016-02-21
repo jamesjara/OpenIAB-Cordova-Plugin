@@ -20,27 +20,27 @@
 8 verbose parsed url   href: '.' }
 9 silly lockFile 3a52ce78- .
 10 verbose lock . /root/.npm/3a52ce78-.lock
-11 verbose tar pack [ '/root/.npm/openiab-cordova-plugin-fortumo/1.0.13/package.tgz',
+11 verbose tar pack [ '/root/.npm/openiab-cordova-plugin-fortumo/1.0.15/package.tgz',
 11 verbose tar pack   '.' ]
-12 verbose tarball /root/.npm/openiab-cordova-plugin-fortumo/1.0.13/package.tgz
+12 verbose tarball /root/.npm/openiab-cordova-plugin-fortumo/1.0.15/package.tgz
 13 verbose folder .
-14 info prepublish openiab-cordova-plugin-fortumo@1.0.13
+14 info prepublish openiab-cordova-plugin-fortumo@1.0.15
 15 silly lockFile 1f1177db-tar tar://.
 16 verbose lock tar://. /root/.npm/1f1177db-tar.lock
-17 silly lockFile 403b9e5a-lugin-fortumo-1-0-13-package-tgz tar:///root/.npm/openiab-cordova-plugin-fortumo/1.0.13/package.tgz
-18 verbose lock tar:///root/.npm/openiab-cordova-plugin-fortumo/1.0.13/package.tgz /root/.npm/403b9e5a-lugin-fortumo-1-0-13-package-tgz.lock
+17 silly lockFile 419649d6-lugin-fortumo-1-0-15-package-tgz tar:///root/.npm/openiab-cordova-plugin-fortumo/1.0.15/package.tgz
+18 verbose lock tar:///root/.npm/openiab-cordova-plugin-fortumo/1.0.15/package.tgz /root/.npm/419649d6-lugin-fortumo-1-0-15-package-tgz.lock
 19 silly lockFile 1f1177db-tar tar://.
 20 silly lockFile 1f1177db-tar tar://.
-21 silly lockFile 403b9e5a-lugin-fortumo-1-0-13-package-tgz tar:///root/.npm/openiab-cordova-plugin-fortumo/1.0.13/package.tgz
-22 silly lockFile 403b9e5a-lugin-fortumo-1-0-13-package-tgz tar:///root/.npm/openiab-cordova-plugin-fortumo/1.0.13/package.tgz
-23 silly lockFile 9de2fe77-va-plugin-fortumo-1-0-13-package /root/.npm/openiab-cordova-plugin-fortumo/1.0.13/package
-24 verbose lock /root/.npm/openiab-cordova-plugin-fortumo/1.0.13/package /root/.npm/9de2fe77-va-plugin-fortumo-1-0-13-package.lock
-25 silly lockFile 9de2fe77-va-plugin-fortumo-1-0-13-package /root/.npm/openiab-cordova-plugin-fortumo/1.0.13/package
-26 silly lockFile 9de2fe77-va-plugin-fortumo-1-0-13-package /root/.npm/openiab-cordova-plugin-fortumo/1.0.13/package
+21 silly lockFile 419649d6-lugin-fortumo-1-0-15-package-tgz tar:///root/.npm/openiab-cordova-plugin-fortumo/1.0.15/package.tgz
+22 silly lockFile 419649d6-lugin-fortumo-1-0-15-package-tgz tar:///root/.npm/openiab-cordova-plugin-fortumo/1.0.15/package.tgz
+23 silly lockFile 88632d34-va-plugin-fortumo-1-0-15-package /root/.npm/openiab-cordova-plugin-fortumo/1.0.15/package
+24 verbose lock /root/.npm/openiab-cordova-plugin-fortumo/1.0.15/package /root/.npm/88632d34-va-plugin-fortumo-1-0-15-package.lock
+25 silly lockFile 88632d34-va-plugin-fortumo-1-0-15-package /root/.npm/openiab-cordova-plugin-fortumo/1.0.15/package
+26 silly lockFile 88632d34-va-plugin-fortumo-1-0-15-package /root/.npm/openiab-cordova-plugin-fortumo/1.0.15/package
 27 silly lockFile 3a52ce78- .
 28 silly lockFile 3a52ce78- .
 29 silly publish { name: 'openiab-cordova-plugin-fortumo',
-29 silly publish   version: '1.0.13',
+29 silly publish   version: '1.0.15',
 29 silly publish   description: 'OpenIAB-Cordova-Plugin forked to be used from phonegap build npm',
 29 silly publish   cordova: { platforms: [ 'ios', 'android', 'wp8' ] },
 29 silly publish   repository:
@@ -66,35 +66,35 @@
 29 silly publish   homepage: 'https://github.com/onepf/OpenIAB-Cordova-Plugin',
 29 silly publish   readme: 'OpenIAB-Cordova-Plugin\n=======================\n\nOpenIAB plugin for Cordova-based frameworks\n\nCordova Integration\n-------------------\n\n1) Add Android platform to your project using CLI.\n```\n$ cordova platform add android\n```\n\n2) Add OpenIAB plugin, referencing repo.\n```\n$ cordova plugin add https://github.com/onepf/OpenIAB-Cordova-Plugin.git\n```\n\n3) Build the app.\n```\n$ cordova build\n```\n\n4) Run it.\n```\n$ cordova run android\n```\n\nIntel XDK Integration\n---------------------\n\n![Import plugin](http://take.ms/Fc5Aa)\n\n![Import settings](http://take.ms/JGni6)\n\n![Import settings](http://take.ms/mluph)\n\n\nPlugin Usage\n------------\n\n1) Include script to your application.\n```\n<script type="text/javascript" src="cordova.js"></script>\n```\n\n2) Simply call ```openiab``` object methods, passing callback functions.\n\na) Map you SKUs. This step is optional.\n```\nopeniab.mapSku(function(){}, function(error){}, SKU1, openiab.STORE_NAME.GOOGLE, "sku_product");\n```\n\nb) Set some options.\n\nSet store search strategy.\n```\nopeniab.options.storeSearchStrategy = openiab.STORE_SEARCH_STRATEGY.INSTALLER_THEN_BEST_FIT;\n```\n\nSet available stores to restrict the set of stores to check.\n```\nopeniab.options.availableStoreNames = [ openiab.STORE_NAME.GOOGLE, openiab.STORE_NAME.YANDEX ];\n```\n\nSet preferred store names (works only for store search strategy ```OpenIabHelper.Options.SEARCH_STRATEGY_BEST_FIT``` and ```OpenIabHelper.Options.SEARCH_STRATEGY_INSTALLER_THEN_BEST_FIT```).\n```\nopeniab.options.preferredStoreNames = [ openiab.STORE_NAME.GOOGLE, openiab.STORE_NAME.YANDEX ];\n```\n\nSet store keys.\n```\nopeniab.options.storeKeys = [ [openiab.STORE_NAME.GOOGLE, \'your public key\'] ];\n```\n\nSet verifying mode (applicable only for Google Play, Appland, Aptoide, AppMall, SlideMe, Yandex.Store).\n```\nopeniab.options.verifyMode = openiab.VERIFY_MODE.SKIP;\n```\n\n\nc) Initialize plugin.\n```\nopeniab.init(function(){}, function(error){}, [ "SKU1", "SKU2", "SKU3" ]);\n```\n\nd) Start purchase.\n```\nopeniab.purchaseProduct(function(purchase){}, function(error){}, "SKU");\n```\n\ne) Consume consumable SKUs in order to be able to purchase it again.\n```\nopeniab.consume(function(purchase){}, function(error){}, "SKU");\n```\n\n3) Use additional methods to get information about SKUs and purchases.\n\na) Can be used any time after ```init``` is finished.\n```\nopeniab.getPurchases(function(purchaseList){}, function(error){});\n```\n\nb) Get details of the single SKU.\n```\nopeniab.getSkuDetails(function(skuDetails){}, function(error){}, "SKU");\n```\n\nc) Get details of the SKU list.\n```\nopeniab.getSkuListDetails(function(skuDetailsList){}, function(error){}, ["SKU1", "SKU2", "SKU3"]);\n```\n\nAlso consider to check [sample application](https://github.com/GrimReio/OpenIAB-Cordova-sample) for cordova or xdk.\n\nData Structures\n---------------\n\n```\npurchase =\n{\n    itemType:\'\',\n    orderId:\'\',\n    packageName:\'\',\n    sku:\'\',\n    purchaseTime:0,\n    purchaseState:0,\n    developerPayload:\'\',\n    token:\'\',\n    originalJson:\'\',\n    signature:\'\',\n    appstoreName:\'\'\n}\n\nskuDetails =\n{\n  \titemType:\'\',\n    sku:\'\',\n    type:\'\',\n    price:\'\',\n    title:\'\',\n    description:\'\',\n    json:\'\'\n}\n\nerror =\n{\n    code:-1,\n\tmessage:\'\'\n}\n```\n',
 29 silly publish   readmeFilename: 'README.md',
-29 silly publish   gitHead: '93b0c1031287a3e5a051847cffd64f1960c9597d',
-29 silly publish   _id: 'openiab-cordova-plugin-fortumo@1.0.13',
+29 silly publish   gitHead: '58fe0292b593880f271defdb633b888f4ebdaa05',
+29 silly publish   _id: 'openiab-cordova-plugin-fortumo@1.0.15',
 29 silly publish   scripts: {},
-29 silly publish   _shasum: '67b51502b7f516eb98bd134bbfe4f6fbb064290d',
+29 silly publish   _shasum: 'edc294d2fc1533ca535b0a71e1f713f369ff8ac5',
 29 silly publish   _from: '.' }
 30 verbose request where is /openiab-cordova-plugin-fortumo
 31 verbose request registry https://registry.npmjs.org/
-32 verbose request id b2d6985c7fc8b335
+32 verbose request id a833ddcf3ea11a70
 33 verbose url raw /openiab-cordova-plugin-fortumo
 34 verbose url resolving [ 'https://registry.npmjs.org/',
 34 verbose url resolving   './openiab-cordova-plugin-fortumo' ]
 35 verbose url resolved https://registry.npmjs.org/openiab-cordova-plugin-fortumo
 36 verbose request where is https://registry.npmjs.org/openiab-cordova-plugin-fortumo
-37 info trying registry request attempt 1 at 01:46:30
+37 info trying registry request attempt 1 at 01:51:35
 38 http PUT https://registry.npmjs.org/openiab-cordova-plugin-fortumo
 39 http 403 https://registry.npmjs.org/openiab-cordova-plugin-fortumo
 40 verbose headers { 'content-type': 'application/json',
 40 verbose headers   'cache-control': 'max-age=300',
 40 verbose headers   'content-length': '96',
 40 verbose headers   'accept-ranges': 'bytes',
-40 verbose headers   date: 'Sun, 21 Feb 2016 06:50:29 GMT',
+40 verbose headers   date: 'Sun, 21 Feb 2016 06:55:34 GMT',
 40 verbose headers   via: '1.1 varnish',
 40 verbose headers   connection: 'keep-alive',
-40 verbose headers   'x-served-by': 'cache-iad2120-IAD',
+40 verbose headers   'x-served-by': 'cache-iad2131-IAD',
 40 verbose headers   'x-cache': 'MISS',
 40 verbose headers   'x-cache-hits': '0',
-40 verbose headers   'x-timer': 'S1456037427.581741,VS0,VE1440' }
+40 verbose headers   'x-timer': 'S1456037732.793507,VS0,VE1502' }
 41 error publish Failed PUT 403
-42 error Error: "You cannot publish over the previously published version 1.0.13." : openiab-cordova-plugin-fortumo
+42 error Error: "You cannot publish over the previously published version 1.0.15." : openiab-cordova-plugin-fortumo
 42 error     at RegClient.<anonymous> (/usr/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:308:14)
 42 error     at Request._callback (/usr/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:246:65)
 42 error     at Request.self.callback (/usr/lib/node_modules/npm/node_modules/request/request.js:236:22)

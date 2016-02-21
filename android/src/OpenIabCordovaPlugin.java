@@ -22,11 +22,10 @@ import java.util.List;
 
 import org.onepf.openiab.cordova.PaymentConstants;
 
-
-import com.fortumo.android.PaymentActivity;
-import com.fortumo.android.PaymentRequestBuilder;
-import com.fortumo.android.PaymentResponse;
-
+import mp.MpUtils;
+import mp.PaymentActivity;
+import mp.PaymentRequest;
+import mp.PaymentResponse;
 
 public class OpenIabCordovaPlugin extends CordovaPlugin
 {
@@ -209,7 +208,7 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
         cordova.getActivity().runOnUiThread(new Runnable() {
             public void run() {
             	
-            	Fortumo.enablePaymentBroadcast(this, Manifest.permission.PAYMENT_BROADCAST_PERMISSION);
+            	MpUtils.enablePaymentBroadcast(this, Manifest.permission.PAYMENT_BROADCAST_PERMISSION);
             	new UpdateDataTask().execute();
             	
                 // _helper = new OpenIabHelper(cordova.getActivity(), options);
@@ -440,17 +439,36 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
+            Bundle extras = intent.getExtras();   
             Log.d(TAG, "onReceive intent: " + intent);
 
             //if (YANDEX_STORE_ACTION_PURCHASE_STATE_CHANGED.equals(action)) {
-                purchaseStateChanged(intent);
+                purchaseStateChanged(extras);
             //}
         }
 
-        private void purchaseStateChanged(Intent data) {
-            Log.d(TAG, "purchaseStateChanged intent: " + data);
+        private void purchaseStateChanged(Bundle extras) {
+            Log.d(TAG, "purchaseStateChanged intent: " + extras);
             //_helper.handleActivityResult(RC_REQUEST, Activity.RESULT_OK, data);
-            new UpdateDataTask().execute();
+            
+            Log.d(TAG, "- billing_status:  " + getStatusString(extras.getInt("billing_status")));
+            Log.d(TAG, "- credit_amount:   " + extras.getString("credit_amount"));
+            Log.d(TAG, "- credit_name:     " + extras.getString("credit_name"));
+            Log.d(TAG, "- message_id:      " + extras.getString("message_id") );
+            Log.d(TAG, "- payment_code:    " + extras.getString("payment_code"));
+            Log.d(TAG, "- price_amount:    " + extras.getString("price_amount"));
+            Log.d(TAG, "- price_currency:  " + extras.getString("price_currency"));
+            Log.d(TAG, "- product_name:    " + extras.getString("product_name"));
+            Log.d(TAG, "- service_id:      " + extras.getString("service_id"));
+            Log.d(TAG, "- user_id:         " + extras.getString("user_id"));
+
+            int billingStatus = extras.getInt("billing_status");
+            if(billingStatus == MpUtils.MESSAGE_STATUS_BILLED) {
+              int coins = Integer.parseInt(intent.getStringExtra("credit_amount"));
+              //Wallet.addCoins(context, coins);
+              new UpdateDataTask().execute();
+            }
+                        
         }
     };
 }
