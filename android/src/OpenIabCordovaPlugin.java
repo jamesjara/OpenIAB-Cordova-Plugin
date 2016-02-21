@@ -29,9 +29,13 @@ import mp.PaymentActivity;
 import mp.PaymentRequest;
 import mp.PaymentResponse;
 
-public class OpenIabCordovaPlugin extends CordovaPlugin  implements PaymentActivity
+public class OpenIabCordovaPlugin extends CordovaPlugin
 {
-   
+	
+	private class mClass extends PaymentActivity {
+	        //Classes A , B , C , D accessible here 
+	}
+	 
     public static final String TAG = "OpenIAB-xxxx";
     
     //private PaymentActivity  mClass;
@@ -265,7 +269,7 @@ public class OpenIabCordovaPlugin extends CordovaPlugin  implements PaymentActiv
             @Override
             public void run() {
             	//mClass.PaymentRequest.PaymentRequestBuilder builder = new mClass.PaymentRequest.PaymentRequestBuilder();
-            	PaymentRequest.PaymentRequestBuilder builder = new PaymentRequest.PaymentRequestBuilder();
+            	mClass.PaymentRequest.PaymentRequestBuilder builder = new mClass.PaymentRequest.PaymentRequestBuilder();
                 builder.setService(PaymentConstants.GOLD_SERVICE_ID, PaymentConstants.GOLD_SERVICE_IN_APP_SECRET);
                 builder.setProductName(PaymentConstants.PRODUCT_GOLD);
                 builder.setConsumable(true);
