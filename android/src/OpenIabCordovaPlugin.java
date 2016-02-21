@@ -29,11 +29,12 @@ import mp.PaymentActivity;
 import mp.PaymentRequest;
 import mp.PaymentResponse;
 
-public class OpenIabCordovaPlugin extends CordovaPlugin, PaymentActivity 
+public class OpenIabCordovaPlugin extends CordovaPlugin 
 {
    
     public static final String TAG = "OpenIAB-xxxx";
     
+    private PaymentActivity  mClass;
 
     /*
     @Override
@@ -79,6 +80,8 @@ public class OpenIabCordovaPlugin extends CordovaPlugin, PaymentActivity
             int storeSearchStrategy = j.getInt("storeSearchStrategy");
 			int samsungCertificationRequestCode = j.getInt("samsungCertificationRequestCode");
 			
+			mClass = new PaymentActivity(this);
+			 
 			//_helper = Fortumo.enablePaymentBroadcast(this, Manifest.permission.PAYMENT_BROADCAST_PERMISSION);
 			init(callbackContext);
             return true;
@@ -275,15 +278,15 @@ public class OpenIabCordovaPlugin extends CordovaPlugin, PaymentActivity
         cordova.getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-            	PaymentRequest.PaymentRequestBuilder builder = new PaymentRequest.PaymentRequestBuilder();
+            	mClass.PaymentRequest.PaymentRequestBuilder builder = new mClass.PaymentRequest.PaymentRequestBuilder();
                 builder.setService(PaymentConstants.GOLD_SERVICE_ID, PaymentConstants.GOLD_SERVICE_IN_APP_SECRET);
                 builder.setProductName(PaymentConstants.PRODUCT_GOLD);
                 builder.setConsumable(true);
                 builder.setDisplayString(PaymentConstants.DISPLAY_STRING_GOLD);
                 builder.setCreditsMultiplier(1.1d);
                 //builder.setIcon(R.drawable.ic_launcher);
-                PaymentRequest pr = builder.build();
-                makePayment(pr);
+                mClass.PaymentRequest pr = builder.build();
+                mClass.makePayment(pr);
                 //_helper.launchPurchaseFlow(cordova.getActivity(), sku, RC_REQUEST, new BillingCallback(callbackContext), developerPayload);
             }
         });
