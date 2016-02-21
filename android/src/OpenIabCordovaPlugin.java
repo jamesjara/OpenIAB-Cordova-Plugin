@@ -9,10 +9,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import org.onepf.oms.OpenIabHelper;
-import org.onepf.oms.appstore.googleUtils.Inventory;
-
-
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -20,21 +16,39 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.util.Log;
 
-import org.onepf.oms.SkuManager;
-import org.onepf.oms.appstore.googleUtils.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
+
+import rg.onepf.openiab.cordova.PaymentConstants;
+
+
 public class OpenIabCordovaPlugin extends CordovaPlugin
 {
-    public static final String TAG = "OpenIAB-CordovaPlugin";
+   
+    public static final String TAG = "OpenIAB-xxxx";
 
-    public static final int RC_REQUEST = 10001; /**< (arbitrary) request code for the purchase flow */
+    private Fortumo _helper;
+    
 
-    private OpenIabHelper _helper;
-    private Inventory _inventory;
+    /*
+    @Override
+    protected void onStart() {
+        super.onStart();
+        IntentFilter filter = new IntentFilter(PaymentConstants.SUCCESSFUL_PAYMENT);
+        registerReceiver(updateReceiver, filter);
+        Log.i(TAG, "updateReceiver registered");
+    }
 
+    @Override
+    protected void onStop() {
+        unregisterReceiver(updateReceiver);
+        Log.i(TAG, "updateReceiver unregistered");
+        super.onPause();
+    }
+    */
+   
+    
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException
     {
@@ -47,43 +61,9 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
             int verifyMode = j.getInt("verifyMode");
             int storeSearchStrategy = j.getInt("storeSearchStrategy");
 			int samsungCertificationRequestCode = j.getInt("samsungCertificationRequestCode");
-
-            OpenIabHelper.Options.Builder builder = new OpenIabHelper.Options.Builder()
-                    .setCheckInventory(checkInventory)
-                    .setCheckInventoryTimeout(checkInventoryTimeout)
-                    .setDiscoveryTimeout(discoveryTimeout)
-                    .setVerifyMode(verifyMode);
-            
-            if (samsungCertificationRequestCode > 0)
-					builder.setSamsungCertificationRequestCode(samsungCertificationRequestCode);
-
-            builder.setStoreSearchStrategy(storeSearchStrategy);
-                    
-            JSONArray storeKeys = j.getJSONArray("storeKeys");
-            for (int i = 0; i < storeKeys.length(); ++i) {
-                JSONArray pair = storeKeys.getJSONArray(i);
-                builder.addStoreKey(pair.get(0).toString(), pair.get(1).toString());
-            }
-            
-            JSONArray prefferedStoreNames = j.getJSONArray("preferredStoreNames");
-            for (int i = 0; i < prefferedStoreNames.length(); ++i) {
-                builder.addPreferredStoreName(prefferedStoreNames.get(i).toString());
-            }
-
-            JSONArray availableStoreNames = j.getJSONArray("availableStoreNames");
-            for (int i = 0; i < availableStoreNames.length(); ++i) {
-                builder.addAvailableStoreNames(availableStoreNames.get(i).toString());
-            }
-            
-            List<String> skuList = new ArrayList<String>();
-            if (args.length() > 1) {
-                JSONArray jSkuList = args.getJSONArray(1);
-                int count = jSkuList.length();
-                for (int i = 0; i < count; ++i) {
-                    skuList.add(jSkuList.getString(i));
-                }
-            }
-            init(builder.build(), skuList, callbackContext);
+			
+			//_helper = Fortumo.enablePaymentBroadcast(this, Manifest.permission.PAYMENT_BROADCAST_PERMISSION);
+			init(callbackContext);
             return true;
         }
         else if ("purchaseProduct".equals(action))
@@ -95,25 +75,32 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
         }
         else if ("purchaseSubscription".equals(action))
         {
+        	/*
             String sku = args.getString(0);
             String payload = args.length() > 1 ? args.getString(1) : "";
             purchaseProduct(sku, payload, callbackContext);
             return true;
+            */
         }
         else if ("consume".equals(action))
         {
+        	/*
             String sku = args.getString(0);
             consume(sku, callbackContext);
             return true;
+            */
         }
         else if ("getSkuDetails".equals(action))
         {
+        	/*
             String sku = args.getString(0);
             getSkuDetails(sku, callbackContext);
             return true;
+            */
         }
         else if ("getSkuListDetails".equals(action))
         {
+        	/*
             List<String> skuList = new ArrayList<String>();
             if (args.length() > 0) {
                 JSONArray jSkuList = args.getJSONArray(0);
@@ -124,30 +111,36 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
             }       
             getSkuListDetails(skuList, callbackContext);
             return true;
+            */
         }
         else if ("getPurchases".equals(action))
         {
+        	/*
             getPurchases(callbackContext);
             return true;
+            */
         }
         else if ("mapSku".equals(action))
         {
+        	/*
             String sku = args.getString(0);
             String storeName = args.getString(1);
             String storeSku = args.getString(2);
             mapSku(sku, storeName, storeSku);
             return true;
+            */
         }
         return false;  // Returning false results in a "MethodNotFound" error.
     }
 
     private void mapSku(String sku, String storeName, String storeSku) {
-        SkuManager.getInstance().mapSku(sku, storeName, storeSku);
+        //SkuManager.getInstance().mapSku(sku, storeName, storeSku);
     }
 
     private void getPurchases(final CallbackContext callbackContext) {
         if (!checkInitialized(callbackContext)) return;
         
+        /*
         List<Purchase> purchaseList = _inventory.getAllPurchases();
         
         JSONArray jsonPurchaseList = new JSONArray();
@@ -162,11 +155,13 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
             }
         }
         callbackContext.success(jsonPurchaseList);
+        */
     }
     
     private void getSkuDetails(String sku, final CallbackContext callbackContext) {
         if (!checkInitialized(callbackContext)) return;
 
+        /*
         if (!_inventory.hasDetails(sku)) {
             callbackContext.error(Serialization.errorToJson(-1, "SkuDetails not found: " + sku));
             return;
@@ -180,11 +175,12 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
             return;
         }
         callbackContext.success(jsonSkuDetails);
+        */
     }
     
     private void getSkuListDetails(List<String> skuList, final CallbackContext callbackContext) {
         if (!checkInitialized(callbackContext)) return;
-
+/*
         JSONArray jsonSkuDetailsList = new JSONArray();
         for (String sku : skuList) {
             if (_inventory.hasDetails(sku)) {
@@ -202,17 +198,23 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
             }
         }
         callbackContext.success(jsonSkuDetailsList);
+        */
     }
 
     private void init(final OpenIabHelper.Options options, final List<String> skuList, final CallbackContext callbackContext) {
         cordova.getActivity().runOnUiThread(new Runnable() {
             public void run() {
-                _helper = new OpenIabHelper(cordova.getActivity(), options);
-                createBroadcasts();
+            	
+            	_helper = Fortumo.enablePaymentBroadcast(this, Manifest.permission.PAYMENT_BROADCAST_PERMISSION);
+            	new UpdateDataTask().execute();
+            	
+                // _helper = new OpenIabHelper(cordova.getActivity(), options);
+            	createBroadcasts();
 
                 // Start setup. This is asynchronous and the specified listener
                 // will be called once setup completes.
-                Log.d(TAG, "Starting setup.");
+                /*
+            	Log.d(TAG, "Starting setup.");
                 _helper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
                     public void onIabSetupFinished(IabResult result) {
                         Log.d(TAG, "Setup finished.");
@@ -226,9 +228,10 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
 
                         Log.d(TAG, "Querying inventory.");
                         // TODO: this is SHIT! product and subs skus shouldn't be sent two times
-                        _helper.queryInventoryAsync(true, skuList, skuList, new BillingCallback(callbackContext));
+                        //_helper.queryInventoryAsync(true, skuList, skuList, new BillingCallback(callbackContext));
                     }
                 });
+                */
             }
         });
     }
@@ -246,19 +249,28 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
     private void purchaseProduct(final String sku, final String developerPayload, final CallbackContext callbackContext) {
         if (!checkInitialized(callbackContext)) return;
 
-        Log.d(TAG, "SKU: " + SkuManager.getInstance().getStoreSku(OpenIabHelper.NAME_GOOGLE, sku));
+        //Log.d(TAG, "SKU: " + SkuManager.getInstance().getStoreSku(OpenIabHelper.NAME_GOOGLE, sku));
 
         cordova.setActivityResultCallback(this);
         cordova.getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                _helper.launchPurchaseFlow(cordova.getActivity(), sku, RC_REQUEST, new BillingCallback(callbackContext), developerPayload);
+                PaymentRequestBuilder builder = new PaymentRequestBuilder();
+                builder.setService(PaymentConstants.GOLD_SERVICE_ID, PaymentConstants.GOLD_SERVICE_IN_APP_SECRET);
+                builder.setProductName(PaymentConstants.PRODUCT_GOLD);
+                builder.setConsumable(true);
+                builder.setDisplayString(PaymentConstants.DISPLAY_STRING_GOLD);
+                builder.setCreditsMultiplier(1.1d);
+                //builder.setIcon(R.drawable.ic_launcher);
+                makePayment(builder.build());
+                //_helper.launchPurchaseFlow(cordova.getActivity(), sku, RC_REQUEST, new BillingCallback(callbackContext), developerPayload);
             }
         });
     }
 
     public void purchaseSubscription(final String sku, final String developerPayload, final CallbackContext callbackContext) {
-        if (!checkInitialized(callbackContext)) return;
+        /*
+    	if (!checkInitialized(callbackContext)) return;
 
         cordova.setActivityResultCallback(this);
         cordova.getActivity().runOnUiThread(new Runnable() {
@@ -267,11 +279,12 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
                 _helper.launchSubscriptionPurchaseFlow(cordova.getActivity(), sku, RC_REQUEST, new BillingCallback(callbackContext), developerPayload);
             }
         });
+        */
     }
 
     private void consume(final String sku, final CallbackContext callbackContext) {
         if (!checkInitialized(callbackContext)) return;
-
+/*
         cordova.getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -285,11 +298,37 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
                 _helper.consumeAsync(purchase, new BillingCallback(callbackContext));
             }
         });
+        */
     }
 
+    
+
+    private class UpdateDataTask extends AsyncTask<Void, Void, String[]> {
+        @Override
+        protected String[] doInBackground(Void... voids) {
+            String[] result = new String[1];
+            result[0] = String.valueOf(}"asd");
+            //result[0] = String.valueOf(Wallet.getColdAmount(MainActivity.this));
+            //result[1] = String.valueOf(BonusLevel.isBonusUnlocked(MainActivity.this));
+            //result[2] = String.valueOf(PotionStack.getPotionAmount(MainActivity.this, PaymentConstants.PRODUCT_HEALTH_POTION));
+            //result[3] = String.valueOf(PotionStack.getPotionAmount(MainActivity.this, PaymentConstants.PRODUCT_MANA_POTION));
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(String[] data) {
+           // goldTextView.setText(data[0]);
+           // bonusLevelUnlockedTextView.setText(data[1]);
+           // healthPotionTextView.setText(data[2]);
+           // manaPotionTextView.setText(data[3]);
+        }
+    }
+    
+    
     /**
      * Callback class for when a purchase or consumption process is finished
      */
+/*
     public class BillingCallback implements
             IabHelper.QueryInventoryFinishedListener,
             IabHelper.OnIabPurchaseFinishedListener,
@@ -355,7 +394,7 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
             _callbackContext.success(jsonPurchase);
         }
     }
-
+*/
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.d(TAG, "onActivityResult(" + requestCode + ", " + resultCode + ", " + data);
@@ -373,8 +412,13 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
 
     private void createBroadcasts() {
         Log.d(TAG, "createBroadcasts");
+        /*
         IntentFilter filter = new IntentFilter(YANDEX_STORE_ACTION_PURCHASE_STATE_CHANGED);
         cordova.getActivity().registerReceiver(_billingReceiver, filter);
+        */
+        IntentFilter filter = new IntentFilter(PaymentConstants.SUCCESSFUL_PAYMENT);
+        cordova.getActivity().registerReceiver(_billingReceiver, filter);
+        Log.i(TAG, "updateReceiver registered");
     }
 
     private void destroyBroadcasts() {
@@ -386,6 +430,7 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
         }
     }
 
+    
     // Yandex specific
     public static final String YANDEX_STORE_SERVICE = "com.yandex.store.service";
     public static final String YANDEX_STORE_ACTION_PURCHASE_STATE_CHANGED = YANDEX_STORE_SERVICE + ".PURCHASE_STATE_CHANGED";
@@ -398,14 +443,15 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
             String action = intent.getAction();
             Log.d(TAG, "onReceive intent: " + intent);
 
-            if (YANDEX_STORE_ACTION_PURCHASE_STATE_CHANGED.equals(action)) {
+            //if (YANDEX_STORE_ACTION_PURCHASE_STATE_CHANGED.equals(action)) {
                 purchaseStateChanged(intent);
-            }
+            //}
         }
 
         private void purchaseStateChanged(Intent data) {
             Log.d(TAG, "purchaseStateChanged intent: " + data);
-            _helper.handleActivityResult(RC_REQUEST, Activity.RESULT_OK, data);
+            //_helper.handleActivityResult(RC_REQUEST, Activity.RESULT_OK, data);
+            new UpdateDataTask().execute();
         }
     };
 }
