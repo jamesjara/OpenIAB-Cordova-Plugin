@@ -400,14 +400,14 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
         Log.d(TAG, "onActivityResult(" + requestCode + ", " + resultCode + ", " + data);
 
         // Pass on the activity result to the helper for handling
-        if (!_helper.handleActivityResult(requestCode, resultCode, data)) {
+       // if (!_helper.handleActivityResult(requestCode, resultCode, data)) {
             // not handled, so handle it ourselves (here's where you'd
             // perform any handling of activity results not related to in-app
             // billing...
             super.onActivityResult(requestCode, resultCode, data);
-        } else {
-            Log.d(TAG, "onActivityResult handled by IABUtil.");
-        }
+       // } else {
+       //     Log.d(TAG, "onActivityResult handled by IABUtil.");
+       // }
     }
 
     private void createBroadcasts() {
@@ -429,11 +429,6 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
             Log.d(TAG, "destroyBroadcasts exception:\n" + ex.getMessage());
         }
     }
-
-    
-    // Yandex specific
-    public static final String YANDEX_STORE_SERVICE = "com.yandex.store.service";
-    public static final String YANDEX_STORE_ACTION_PURCHASE_STATE_CHANGED = YANDEX_STORE_SERVICE + ".PURCHASE_STATE_CHANGED";
 
     private BroadcastReceiver _billingReceiver = new BroadcastReceiver() {
         private static final String TAG = "YandexBillingReceiver";
