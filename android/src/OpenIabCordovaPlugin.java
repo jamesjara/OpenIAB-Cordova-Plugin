@@ -209,10 +209,12 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
             public void run() {
             	
             	MpUtils.enablePaymentBroadcast(this, Manifest.permission.PAYMENT_BROADCAST_PERMISSION);
-            	new UpdateDataTask().execute();
+            	
             	
                 // _helper = new OpenIabHelper(cordova.getActivity(), options);
             	createBroadcasts();
+            	
+            	new UpdateDataTask().execute();
 
                 // Start setup. This is asynchronous and the specified listener
                 // will be called once setup completes.
