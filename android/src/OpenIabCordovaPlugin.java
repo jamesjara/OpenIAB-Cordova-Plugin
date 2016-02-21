@@ -32,7 +32,8 @@ import mp.PaymentResponse;
 public class OpenIabCordovaPlugin extends CordovaPlugin
 {
 	
- 
+
+	private static final int REQUEST_CODE = 1234; // Can be anything
     public static final String TAG = "OpenIAB-xxxx";
     
     //private PaymentActivity  mClass;
@@ -277,7 +278,7 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
                 
                 // execute
                 Intent localIntent = pr.toIntent(cordova.getActivity());
-                cordova.getActivity().startActivityForResult(localIntent, 123);
+                cordova.getActivity().startActivityForResult(localIntent, REQUEST_CODE);
                 
                 //makePayment(pr);
                 //_helper.launchPurchaseFlow(cordova.getActivity(), sku, RC_REQUEST, new BillingCallback(callbackContext), developerPayload);
@@ -471,6 +472,7 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
                         
         }
     };
+
     
 /*
 	protected final void makePayment(PaymentRequest payment) {		
