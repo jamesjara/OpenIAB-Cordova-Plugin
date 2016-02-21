@@ -14,21 +14,18 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.AsyncTask;
 import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
 import org.onepf.openiab.cordova.PaymentConstants;
-
 
 public class OpenIabCordovaPlugin extends CordovaPlugin
 {
    
     public static final String TAG = "OpenIAB-xxxx";
-
-    private Fortumo _helper;
     
 
     /*
@@ -201,11 +198,12 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
         */
     }
 
-    private void init(final Options options, final List<String> skuList, final CallbackContext callbackContext) {
+    //private void init(final JSONArray  options, final List<String> skuList, final CallbackContext callbackContext) {
+    private void init(final CallbackContext callbackContext) {
         cordova.getActivity().runOnUiThread(new Runnable() {
             public void run() {
             	
-            	_helper = Fortumo.enablePaymentBroadcast(this, Manifest.permission.PAYMENT_BROADCAST_PERMISSION);
+            	Fortumo.enablePaymentBroadcast(this, Manifest.permission.PAYMENT_BROADCAST_PERMISSION);
             	new UpdateDataTask().execute();
             	
                 // _helper = new OpenIabHelper(cordova.getActivity(), options);
