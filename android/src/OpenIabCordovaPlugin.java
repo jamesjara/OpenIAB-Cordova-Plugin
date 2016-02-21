@@ -512,7 +512,7 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
 				// ..
 			}
 		} else {
-			super.onActivityResult(requestCode, resultCode, data);
+		//	super.onActivityResult(requestCode, resultCode, data);
 		}
 	}
 }
