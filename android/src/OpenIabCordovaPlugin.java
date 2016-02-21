@@ -35,7 +35,7 @@ public class OpenIabCordovaPlugin extends CordovaPlugin  implements PaymentActiv
     public static final String TAG = "OpenIAB-xxxx";
     
     //private PaymentActivity  mClass;
-    public static final String READ = 'xxx';//Manifest.permission.PAYMENT_BROADCAST_PERMISSION;
+    public static final String READ = "xxx";//Manifest.permission.PAYMENT_BROADCAST_PERMISSION;
     /*
     @Override
     protected void onStart() {
