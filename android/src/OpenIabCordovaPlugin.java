@@ -494,7 +494,7 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
 				return;
 			}			
 			// OK
-			if (resultCode == "OK"){//RESULT_OK) {
+			if (resultCode == Activity.RESULT_OK){//RESULT_OK) {
 				PaymentResponse response = new PaymentResponse(data);
 				
 				switch (response.getBillingStatus()) {
