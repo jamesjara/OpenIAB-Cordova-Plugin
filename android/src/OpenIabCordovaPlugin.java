@@ -29,13 +29,13 @@ import mp.PaymentActivity;
 import mp.PaymentRequest;
 import mp.PaymentResponse;
 
-public class OpenIabCordovaPlugin extends CordovaPlugin 
+public class OpenIabCordovaPlugin extends CordovaPlugin  implements PaymentActivity
 {
    
     public static final String TAG = "OpenIAB-xxxx";
     
-    private PaymentActivity  mClass;
-    public static final String READ = Manifest.permission.PAYMENT_BROADCAST_PERMISSION;
+    //private PaymentActivity  mClass;
+    public static final String READ = 'xxx';//Manifest.permission.PAYMENT_BROADCAST_PERMISSION;
     /*
     @Override
     protected void onStart() {
@@ -66,7 +66,7 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
             int storeSearchStrategy = j.getInt("storeSearchStrategy");
 			int samsungCertificationRequestCode = j.getInt("samsungCertificationRequestCode");
 			
-			mClass = new PaymentActivity(this);
+			//mClass = new PaymentActivity(this);
 			 
 			//_helper = Fortumo.enablePaymentBroadcast(this, Manifest.permission.PAYMENT_BROADCAST_PERMISSION);
 			init(callbackContext);
@@ -264,15 +264,17 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
         cordova.getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-            	mClass.PaymentRequest.PaymentRequestBuilder builder = new mClass.PaymentRequest.PaymentRequestBuilder();
+            	//mClass.PaymentRequest.PaymentRequestBuilder builder = new mClass.PaymentRequest.PaymentRequestBuilder();
+            	PaymentRequest.PaymentRequestBuilder builder = new PaymentRequest.PaymentRequestBuilder();
                 builder.setService(PaymentConstants.GOLD_SERVICE_ID, PaymentConstants.GOLD_SERVICE_IN_APP_SECRET);
                 builder.setProductName(PaymentConstants.PRODUCT_GOLD);
                 builder.setConsumable(true);
                 builder.setDisplayString(PaymentConstants.DISPLAY_STRING_GOLD);
                 builder.setCreditsMultiplier(1.1d);
                 //builder.setIcon(R.drawable.ic_launcher);
-                mClass.PaymentRequest pr = builder.build();
-                mClass.makePayment(pr);
+                PaymentRequest pr = builder.build();
+                
+                makePayment(pr);
                 //_helper.launchPurchaseFlow(cordova.getActivity(), sku, RC_REQUEST, new BillingCallback(callbackContext), developerPayload);
             }
         });
