@@ -22,6 +22,12 @@ import java.util.List;
 
 import org.onepf.openiab.cordova.PaymentConstants;
 
+
+import com.fortumo.android.PaymentActivity;
+import com.fortumo.android.PaymentRequestBuilder;
+import com.fortumo.android.PaymentResponse;
+
+
 public class OpenIabCordovaPlugin extends CordovaPlugin
 {
    
