@@ -29,7 +29,7 @@ import mp.PaymentActivity;
 import mp.PaymentRequest;
 import mp.PaymentResponse;
 
-public class OpenIabCordovaPlugin extends CordovaPlugin
+public class OpenIabCordovaPlugin extends CordovaPlugin, PaymentActivity 
 {
    
     public static final String TAG = "OpenIAB-xxxx";
@@ -456,7 +456,7 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
             Log.d(TAG, "purchaseStateChanged intent: " + extras);
             //_helper.handleActivityResult(RC_REQUEST, Activity.RESULT_OK, data);
             
-            Log.d(TAG, "- billing_status:  " + getStatusString(extras.getInt("billing_status")));
+           // Log.d(TAG, "- billing_status:  " + getStatusString(extras.getInt("billing_status")));
             Log.d(TAG, "- credit_amount:   " + extras.getString("credit_amount"));
             Log.d(TAG, "- credit_name:     " + extras.getString("credit_name"));
             Log.d(TAG, "- message_id:      " + extras.getString("message_id") );
