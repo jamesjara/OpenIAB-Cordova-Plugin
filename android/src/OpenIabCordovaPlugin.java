@@ -263,7 +263,6 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
             @Override
             public void run() {
             	PaymentRequest.PaymentRequestBuilder builder = new PaymentRequest.PaymentRequestBuilder();
-                PaymentRequestBuilder builder = new PaymentRequestBuilder();
                 builder.setService(PaymentConstants.GOLD_SERVICE_ID, PaymentConstants.GOLD_SERVICE_IN_APP_SECRET);
                 builder.setProductName(PaymentConstants.PRODUCT_GOLD);
                 builder.setConsumable(true);
