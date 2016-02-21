@@ -15,6 +15,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -447,11 +448,11 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
             Log.d(TAG, "onReceive intent: " + intent);
 
             //if (YANDEX_STORE_ACTION_PURCHASE_STATE_CHANGED.equals(action)) {
-                purchaseStateChanged(extras);
+                purchaseStateChanged(extras, intent);
             //}
         }
 
-        private void purchaseStateChanged(Bundle extras) {
+        private void purchaseStateChanged(Bundle extras, Intent intent) {
             Log.d(TAG, "purchaseStateChanged intent: " + extras);
             //_helper.handleActivityResult(RC_REQUEST, Activity.RESULT_OK, data);
             
