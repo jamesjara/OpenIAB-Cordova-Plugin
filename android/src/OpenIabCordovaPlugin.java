@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-import rg.onepf.openiab.cordova.PaymentConstants;
+import org.onepf.openiab.cordova.PaymentConstants;
 
 
 public class OpenIabCordovaPlugin extends CordovaPlugin
