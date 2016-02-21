@@ -52,6 +52,19 @@ public class OpenIabCordovaPlugin extends CordovaPlugin, PaymentActivity
     }
     */
    
+    public static String getMetadata(Context context, String name) {
+    	try {
+    	ApplicationInfo appInfo = context.getPackageManager().getApplicationInfo(
+    	context.getPackageName(), PackageManager.GET_META_DATA);
+    	if (appInfo.metaData != null) {
+    	return appInfo.metaData.getString(name);
+    	}
+    	} catch (PackageManager.NameNotFoundException e) {
+    	// if we can’t find it in the manifest, just return null
+    	}
+
+    	return null;
+    	}
     
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException
@@ -210,7 +223,7 @@ public class OpenIabCordovaPlugin extends CordovaPlugin, PaymentActivity
         cordova.getActivity().runOnUiThread(new Runnable() {
             public void run() {
             	
-            	MpUtils.enablePaymentBroadcast(this, Manifest.permission.PAYMENT_BROADCAST_PERMISSION);
+            	MpUtils.enablePaymentBroadcast(this, getMetadata('PAYMENT_BROADCAST_PERMISSION')); //Manifest.permission.PAYMENT_BROADCAST_PERMISSION);
             	
             	
                 // _helper = new OpenIabHelper(cordova.getActivity(), options);
