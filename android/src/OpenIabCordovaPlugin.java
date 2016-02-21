@@ -212,7 +212,7 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
         cordova.getActivity().runOnUiThread(new Runnable() {
             public void run() {
             	
-            	MpUtils.enablePaymentBroadcast(this, READ)); //Manifest.permission.PAYMENT_BROADCAST_PERMISSION);
+            	MpUtils.enablePaymentBroadcast(this, READ); //Manifest.permission.PAYMENT_BROADCAST_PERMISSION);
             	
             	
                 // _helper = new OpenIabHelper(cordova.getActivity(), options);
