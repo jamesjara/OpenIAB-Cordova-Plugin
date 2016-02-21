@@ -213,7 +213,7 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
         cordova.getActivity().runOnUiThread(new Runnable() {
             public void run() {
             	
-            	MpUtils.enablePaymentBroadcast(this, READ); //Manifest.permission.PAYMENT_BROADCAST_PERMISSION);
+            //	MpUtils.enablePaymentBroadcast(this, READ); //Manifest.permission.PAYMENT_BROADCAST_PERMISSION);
             	
             	
                 // _helper = new OpenIabHelper(cordova.getActivity(), options);
@@ -273,8 +273,7 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
                 builder.setDisplayString(PaymentConstants.DISPLAY_STRING_GOLD);
                 builder.setCreditsMultiplier(1.1d);
                 //builder.setIcon(R.drawable.ic_launcher);
-                PaymentRequest pr = builder.build();
-                
+                PaymentRequest pr = builder.build();                
                 makePayment(pr);
                 //_helper.launchPurchaseFlow(cordova.getActivity(), sku, RC_REQUEST, new BillingCallback(callbackContext), developerPayload);
             }
@@ -469,8 +468,10 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
     };
     
 
-	protected final void makePayment(PaymentRequest payment) {
-		startActivityForResult(payment.toIntent(this), REQUEST_CODE);
+	protected final void makePayment(PaymentRequest payment) {		
+		Context context =  cordova.getActivity().getApplicationContext();
+		Intent intent = new Intent(context,payment.toIntent(this));
+		startActivityForResult(this, intent, 0);
 	}
 
 	@Override
