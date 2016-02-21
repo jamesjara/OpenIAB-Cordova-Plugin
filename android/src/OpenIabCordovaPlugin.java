@@ -1,5 +1,7 @@
 package org.onepf.openiab.cordova;
 
+//import com.squareup.okhttpxxxxxxx3.internal.StrictLineReader;
+
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
 
@@ -10,7 +12,6 @@ import org.json.JSONObject;
 import org.onepf.oms.OpenIabHelper;
 import org.onepf.oms.appstore.googleUtils.Inventory;
 
-import com.squareup.okhttp.internal.StrictLineReader;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
