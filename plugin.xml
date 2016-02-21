@@ -35,21 +35,40 @@
         </config-file>
 
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
-			  <!--Fortumo start-->
-			        <receiver android:name="mp.MpSMSReceiver">
-			            <intent-filter>
-			                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
-			            </intent-filter>
-			        </receiver>
-			
-			        <service android:name="mp.MpService" />
-			        <service android:name="mp.StatusUpdateService" />
-			
-			        <activity
-			            android:name="mp.MpActivity"
-			            android:configChanges="orientation|keyboardHidden|screenSize"
-			            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-			        <!--Fortumo end-->
+        
+        
+  <!-- Define your own permission to protect payment broadcast -->
+  <permission android:name="org.onepf.openiab.cordova.PAYMENT_BROADCAST_PERMISSION" 
+               android:label="Read payment status" 
+               android:protectionLevel="signature" />
+  <!-- "signature" permission granted automatically by system, without notifying user. -->
+  <uses-permission android:name="org.onepf.openiab.cordova.PAYMENT_BROADCAST_PERMISSION" />
+  
+    <!-- Declare these objects, this is part of Fortumo SDK,
+    and should not be called directly -->
+    <receiver android:name="mp.MpSMSReceiver">
+      <intent-filter>
+      <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+    </intent-filter>
+  </receiver>
+  <service android:name="mp.MpService" />
+  <service android:name="mp.StatusUpdateService" />
+  <activity android:name="mp.MpActivity" 
+             android:theme="@android:style/Theme.Translucent.NoTitleBar"
+             android:configChanges="orientation|keyboardHidden|screenSize" />
+ 
+    <!-- Implement you own BroadcastReceiver to track payment status,
+    should be protected by "signature" permission -->
+  <receiver android:name=".PaymentStatusReceiver" 
+            android:permission="org.onepf.openiab.cordova.PAYMENT_BROADCAST_PERMISSION">
+    <intent-filter>
+      <action android:name="mp.info.PAYMENT_STATUS_CHANGED" />
+    </intent-filter>
+  </receiver>
+  
+  
+
+
         </config-file>
 
         <!-- It's a pity, but all source files should be listed here -->

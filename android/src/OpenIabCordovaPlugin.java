@@ -268,7 +268,8 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
                 builder.setDisplayString(PaymentConstants.DISPLAY_STRING_GOLD);
                 builder.setCreditsMultiplier(1.1d);
                 //builder.setIcon(R.drawable.ic_launcher);
-                makePayment(builder.build());
+                PaymentRequest pr = builder.build();
+                makePayment(pr);
                 //_helper.launchPurchaseFlow(cordova.getActivity(), sku, RC_REQUEST, new BillingCallback(callbackContext), developerPayload);
             }
         });
