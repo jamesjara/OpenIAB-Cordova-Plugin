@@ -487,7 +487,6 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
 	}
 	*/
 
-	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == REQUEST_CODE) {
 			if(data == null) {
