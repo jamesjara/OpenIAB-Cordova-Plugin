@@ -307,7 +307,7 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
         @Override
         protected String[] doInBackground(Void... voids) {
             String[] result = new String[1];
-            result[0] = String.valueOf(}"asd");
+            result[0] = String.valueOf("asd");
             //result[0] = String.valueOf(Wallet.getColdAmount(MainActivity.this));
             //result[1] = String.valueOf(BonusLevel.isBonusUnlocked(MainActivity.this));
             //result[2] = String.valueOf(PotionStack.getPotionAmount(MainActivity.this, PaymentConstants.PRODUCT_HEALTH_POTION));
