@@ -486,8 +486,9 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
 		startActivityForResult(this, intent, 0);
 	}
 	*/
-
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    
+    @Override
+    public void  onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == REQUEST_CODE) {
 			if(data == null) {
 				return;
@@ -512,7 +513,7 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
 				// ..
 			}
 		} else {
-		//	super.onActivityResult(requestCode, resultCode, data);
+			//super.onActivityResult(requestCode, resultCode, data);
 		}
 	}
 }
