@@ -273,8 +273,13 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
                 builder.setDisplayString(PaymentConstants.DISPLAY_STRING_GOLD);
                 builder.setCreditsMultiplier(1.1d);
                 //builder.setIcon(R.drawable.ic_launcher);
-                PaymentRequest pr = builder.build();                
-                makePayment(pr);
+                PaymentRequest pr = builder.build();  
+                
+                // execute
+                Intent localIntent = pr.toIntent(cordova.getActivity());
+                cordova.getActivity().startActivityForResult(localIntent, 123);
+                
+                //makePayment(pr);
                 //_helper.launchPurchaseFlow(cordova.getActivity(), sku, RC_REQUEST, new BillingCallback(callbackContext), developerPayload);
             }
         });
@@ -467,12 +472,18 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
         }
     };
     
-
+/*
 	protected final void makePayment(PaymentRequest payment) {		
+		
+
+        Intent localIntent = paymentRequest.toIntent(act);
+        act.startActivityForResult(localIntent, requestCode);
+        
 		Context context =  cordova.getActivity().getApplicationContext();
 		Intent intent = new Intent(context,payment.toIntent(this));
 		startActivityForResult(this, intent, 0);
 	}
+	*/
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
