@@ -5,9 +5,7 @@ import android.util.Log;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONStringer;
-import org.onepf.oms.appstore.googleUtils.IabResult;
-import org.onepf.oms.appstore.googleUtils.Purchase;
-import org.onepf.oms.appstore.googleUtils.SkuDetails;
+
 
 public class Serialization {
 
@@ -17,6 +15,7 @@ public class Serialization {
      * @return json string
      * @throws org.json.JSONException
      */
+	/*
     public static JSONObject purchaseToJson(Purchase purchase) throws JSONException {
         JSONObject j = new JSONObject();
         j.put("itemType", purchase.getItemType());
@@ -47,13 +46,13 @@ public class Serialization {
         }
         return j;
     }
-
+*/
     /**
      * Serialize sku details data to json
      * @param skuDetails sku details data
      * @return json string
      * @throws JSONException
-     */
+     *//*
     public static JSONObject skuDetailsToJson(SkuDetails skuDetails) throws JSONException {
         JSONObject j = new JSONObject();
         j.put("itemType", skuDetails.getItemType());
@@ -64,5 +63,5 @@ public class Serialization {
         j.put("description", skuDetails.getDescription());
         j.put("json", skuDetails.getJson());
         return j;
-    }
+    }*/
 }

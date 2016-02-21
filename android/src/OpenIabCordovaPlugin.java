@@ -201,7 +201,7 @@ public class OpenIabCordovaPlugin extends CordovaPlugin
         */
     }
 
-    private void init(final OpenIabHelper.Options options, final List<String> skuList, final CallbackContext callbackContext) {
+    private void init(final Options options, final List<String> skuList, final CallbackContext callbackContext) {
         cordova.getActivity().runOnUiThread(new Runnable() {
             public void run() {
             	
